@@ -5,6 +5,6 @@ from .models import Fcuser
 # Register your models here.
 
 class FcuserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'password', 'registered_dttm')
+    list_display = ('username', 'useremail', 'password', 'registered_dttm')
 
 admin.site.register(Fcuser, FcuserAdmin)
