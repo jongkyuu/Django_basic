@@ -14,6 +14,12 @@ def home(request):
     else:
         return HttpResponse(f'Home!')
 
+def logout(request):
+    if request.session.get('user'):
+        del(request.session['user'])
+        
+    return redirect('/')
+
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
@@ -34,7 +40,12 @@ def login(request):
                 # 로그인 처리
                 # 세션을 사용한 로그인
                 print(f'fcuser.id : {fcuser.id}')
+                print(f'request.session : {request.session}')
+                # print(f'request.session_user : {request.session["user"]}')
                 request.session['user'] = fcuser.id
+                print(f'2nd request.session : {request.session}')
+                print(f'2nd request.session_user : {request.session["user"]}')
+                
                 # 리다이렉트
                 return redirect('/')
                 pass
